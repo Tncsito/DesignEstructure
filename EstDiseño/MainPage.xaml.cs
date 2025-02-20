@@ -2,24 +2,37 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnCounterClicked(object sender, EventArgs e) //Flex
         {
-            count++;
+            await Navigation.PushModalAsync(new NavigationPage(new FlexLayoutPage()));
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private async void Button_Clicked(object sender, EventArgs e) //Absolute
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new AbsoluteLayoutPage()));
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void Button_Clicked_1(object sender, EventArgs e) //Grid
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new GridPage()));
         }
     }
 
 }
+/* 
+    private async void OnRegisterClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new NavigationPage(new RegisterPage()));
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushModalAsync(new NavigationPage(new Menu()));
+    }
+ */
